@@ -30,3 +30,10 @@ def register(request):
   else:
     form = Registration()
   return render(request,'registration/registration_form.html',{"form":form})
+
+@login_required
+def profile(request):
+  current_user = request.user
+  all_users = User.objects.all()
+  
+  return render(request,'profile/profile.html',{'all_users':all_users,"current_user":current_user})
