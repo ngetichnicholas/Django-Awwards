@@ -41,17 +41,16 @@ class Profile(models.Model):
   profile_picture = CloudinaryField('image')
   bio = models.TextField()
   user = models.OneToOneField(User,on_delete = models.CASCADE)
-  email = models.EmailField()
   phone = models.CharField(max_length=10)
   address = models.CharField(max_length=30)
 
-  @receiver(post_save, sender=User)
-  def create_profile(sender, instance, created, **kwargs):
+  @receiver(post_save , sender = User)
+  def create_profile(instance,sender,created,**kwargs):
     if created:
-      Profile.objects.create(user=instance)
+      Profile.objects.create(user = instance)
 
-  @receiver(post_save, sender=User)
-  def save_profile(sender, instance, **kwargs):
+  @receiver(post_save,sender = User)
+  def save_profile(sender,instance,**kwargs):
     instance.profile.save()
 
   def __str__(self):

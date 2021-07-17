@@ -17,14 +17,12 @@ class PostProjectForm(forms.ModelForm):
     fields = ('title','description','project_image','repo_link','live_link', 'technologies_used')
 
 class UpdateProfile(forms.ModelForm):
-
   class Meta:
     model = Profile
-    fields = ['profile_picture','bio']
+    fields = ['profile_picture','bio','phone','address']
 
 class UpdateUser(forms.ModelForm):
   email = forms.EmailField()
-  
   class Meta:
     model = User
     fields = ['username','email']
