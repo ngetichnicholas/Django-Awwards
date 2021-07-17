@@ -16,6 +16,22 @@ class Project(models.Model):
   user = models.ForeignKey(User,on_delete = models.CASCADE)
   technologies_used =models.TextField()
 
+  def save_project(self):
+    self.save()
+
+  def delete_project(self):
+    self.delete()
+
+  @classmethod
+  def search_project(cls, title):
+    return cls.objects.filter(title__icontains=title).all()
+
+  @classmethod
+  def get_projects(cls):
+    return cls.objects.all()
+
+  def __str__(self):
+    return f'{self.title}'
 
 class Profile(models.Model):
   profile_picture = CloudinaryField('image')
