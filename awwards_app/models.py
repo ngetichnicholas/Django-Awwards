@@ -3,6 +3,10 @@ import datetime as dt
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
+
 
 
 # Create your models here.
@@ -40,6 +44,18 @@ class Profile(models.Model):
   email = models.EmailField()
   phone = models.CharField(max_length=10)
   address = models.CharField(max_length=30)
+
+  @receiver(post_save, sender=User)
+  def create_profile(sender, instance, created, **kwargs):
+    if created:
+      Profile.objects.create(user=instance)
+
+  @receiver(post_save, sender=User)
+  def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+  def __str__(self):
+    return "%s profile" % self.user
 
 class Rate(models.Model):
   content_wise = models.IntegerField(blank=True,default=0)
