@@ -13,6 +13,8 @@ class Project(models.Model):
   project_image = CloudinaryField('image')
   repo_link = models.CharField(max_length=144)
   live_link = models.CharField(max_length=144)
+  user = models.ForeignKey(User,on_delete = models.CASCADE)
+
 
 class Profile(models.Model):
   profile_picture = CloudinaryField('image')
