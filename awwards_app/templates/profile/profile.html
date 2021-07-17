@@ -5,8 +5,42 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <h2>Welcome to your profile</h2>
-    </div>
+      <div class="row">
+        <div class="col-md-4">
+          {% if user.profile.profile_photo.url %}
+          <img src="{{user.profile.profile_photo.url}}" alt="{{user.profile_photo.url}}" style="height: 20vh; width:20vh; border-radius:50%"
+            class="rounded-circle account-img">
+            {% else %}
+            <i style="font-size:100px;color:#4888BE" class="fa fa-user" aria-hidden="true"></i>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-4">
+              <p class="">{{user.username}}</p>
+            </div>
+            <div class="col-md-4">
+              <p><a href="{% url 'update_profile' %}">
+                <button class="btn btn-info ml-4 pl-3">Update</button>
+              </a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+          <p class="">{{user_photos|length}} posts</p>
+            </div>
+            <div class="col-md-4">
+              <p class="">{{user.profile.saved_followers}} followers</p>
+            </div>
+            <div class="col-md-4">
+              <p class="">{{user.profile.saved_following}} following</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <p class="">{{user.profile.bio}}</p>
+        </div>
+      </div>    </div>
     <div class="col-md-3"></div>
   </div>
 </div>
