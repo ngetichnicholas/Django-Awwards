@@ -23,3 +23,9 @@ class Profile(models.Model):
   email = models.EmailField()
   phone = models.CharField(max_length=10)
   address = models.CharField(max_length=30)
+
+class Rate(models.Model):
+  content_wise = models.IntegerField(blank=True,default=0)
+  usability_wise = models.IntegerField(blank=True,default=0)
+  design_wise = models.IntegerField(blank=True,default=0)
+  project = models.ForeignKey(Project,on_delete=CASCADE)
