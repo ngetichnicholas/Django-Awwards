@@ -26,8 +26,11 @@ class Profile(models.Model):
 
 class Rate(models.Model):
   content_wise = models.IntegerField(blank=True,default=0)
+  content_wise_average = models.FloatField(default=0.0,blank=True)
   usability_wise = models.IntegerField(blank=True,default=0)
+  usability_wise_average = models.FloatField(default=0.0,blank=True)
   design_wise = models.IntegerField(blank=True,default=0)
-  average_rate = models.FloatField(default=0.0,blank=True)
+  design_wise_average = models.FloatField(default=0.0,blank=True)
+  aggregate_average_rate = models.FloatField(default=0.0,blank=True)
   project = models.ForeignKey(Project,on_delete=CASCADE)
   user = models.ForeignKey(User,on_delete=CASCADE)
