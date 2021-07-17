@@ -14,6 +14,7 @@ class Project(models.Model):
   repo_link = models.URLField(max_length=300)
   live_link = models.URLField(max_length=300)
   user = models.ForeignKey(User,on_delete = models.CASCADE)
+  technologies_used =models.TextField()
 
 
 class Profile(models.Model):
