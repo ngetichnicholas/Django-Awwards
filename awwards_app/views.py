@@ -37,3 +37,9 @@ def profile(request):
   all_users = User.objects.all()
   
   return render(request,'profile/profile.html',{'all_users':all_users,"current_user":current_user})
+
+@login_required
+def search(request):
+  if 'search_user' in request.GET and request.GET["search_user"]:
+    search_term = request.GET.get('search_user')
+  return render(request,'search.html')
