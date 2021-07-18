@@ -5,8 +5,29 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <h1>WELCOME TO AWWARDS</h1>
-    </div>
+      {% if projects %}
+      {% for project in projects %}
+      <div class="profile">
+        <div class="row">
+          <div class="col-md-2">
+            {% if project.user.profile.profile_picture.url %}
+            <p><a href="{% url 'users_profile' project.user.id %}"><img class="profile_picture"
+                  src="{{ project.user.profile.profile_picture.url }}" alt="{{ project.profile.name }}"></a></p>
+                  {% else %}
+                  <i style="font-size:100px;color:#4888BE" class="fa fa-user" aria-hidden="true"></i>
+                  {% endif %}
+          </div>
+          <div class="col-md-2">
+            <p><a class="username" style="margin-top: 5px;" href="{% url 'users_profile' project.user.id %}">{{ project.user.username }}</a></p>
+          </div>
+        </div>
+        <div class="card-header">
+          <a href="{% url 'project.detail' project.id %}" class="open-project"><img src="{{project.project_image.url}}" alt="" class="img-thumbnail"></a>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+      </div>    </div>
     <div class="col-md-3"></div>
   </div>
 </div>
