@@ -18,8 +18,6 @@ def index(request):
   all_users = User.objects.all()
   projects = Project.display_projects()
 
-
-  
   return render (request,'index.html',{"projects":projects,"post":post_form,"all_users":all_users})
 
 def register(request):
@@ -81,3 +79,11 @@ def post(request):
   else:
     post_form = PostProjectForm()
   return render(request,'post.html',{"post_form":post_form})
+
+@login_required
+def users_profile(request,pk):
+  user = User.objects.get(pk = pk)
+  projects = Project.objects.filter(user = user)
+  current_user = request.user
+  
+  return render(request,'profile/users_profile.html',{"user":user,"projects":projects,"current_user":current_user})
