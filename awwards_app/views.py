@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import Http404,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from . forms import Registration,UpdateUser,UpdateProfile
+from . forms import Registration,UpdateUser,UpdateProfile,PostProjectForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
@@ -62,3 +62,17 @@ def search(request):
   if 'search_user' in request.GET and request.GET["search_user"]:
     search_term = request.GET.get('search_user')
   return render(request,'search.html')
+
+@login_required
+def post(request):
+  if request.method == 'POST':
+    post_form = PostProjectForm(request.POST,request.FILES) 
+    if post_form.is_valid():
+      the_post = post_form.save(commit = False)
+      the_post.user = request.user
+      the_post.save()
+      return redirect('home')
+
+  else:
+    post_form = PostProjectForm()
+  return render(request,'post.html',{"post_form":post_form})
