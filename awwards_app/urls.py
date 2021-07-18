@@ -12,5 +12,6 @@ urlpatterns = [
   path('update/',app_views.update_profile,name='update_profile'),
   path('post/',app_views.post,name='post'),
   re_path(r'^search/$',app_views.search,name='search'),
+  re_path(r'^users/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'),
 
 ]
