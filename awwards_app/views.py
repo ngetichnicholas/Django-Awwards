@@ -41,6 +41,14 @@ def profile(request):
   
   return render(request,'profile/profile.html',{'all_users':all_users,"current_user":current_user})
 
+def detail(request,project_id):
+  current_user = request.user
+  try:
+    project = get_object_or_404(Project, pk = project_id)
+  except ObjectDoesNotExist:
+    raise Http404()
+  return render(request, 'project_details.html', {'project':project,'current_user':current_user})
+
 @login_required
 def update_profile(request):
   if request.method == 'POST':
