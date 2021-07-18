@@ -79,9 +79,9 @@ def post(request):
   if request.method == 'POST':
     post_form = PostProjectForm(request.POST,request.FILES) 
     if post_form.is_valid():
-      the_post = post_form.save(commit = False)
-      the_post.user = request.user
-      the_post.save()
+      new_post = post_form.save(commit = False)
+      new_post.user = request.user
+      new_post.save()
       return redirect('home')
 
   else:
@@ -95,3 +95,11 @@ def users_profile(request,pk):
   current_user = request.user
   
   return render(request,'profile/users_profile.html',{"user":user,"projects":projects,"current_user":current_user})
+
+@login_required
+def delete(request,project_id):
+  current_user = request.user
+  project = Project.objects.get(pk=project_id)
+  if project:
+    project.delete_project()
+  return redirect('home')

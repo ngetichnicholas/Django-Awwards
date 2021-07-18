@@ -14,5 +14,7 @@ urlpatterns = [
   path('project/<int:project_id>',app_views.detail,  name='project.detail'),
   re_path(r'^search/$',app_views.search,name='search'),
   re_path(r'^users/(?P<pk>\d+)$',app_views.users_profile,name='users_profile'),
+  re_path(r'^delete/(?P<project_id>\d+)$',app_views.delete,name='delete'),
+
 
 ]
