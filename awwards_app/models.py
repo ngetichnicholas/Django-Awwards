@@ -20,6 +20,11 @@ class Project(models.Model):
   user = models.ForeignKey(User,on_delete = models.CASCADE)
   technologies_used =models.TextField()
 
+  @classmethod
+  def display_projects(cls):
+    projects = cls.objects.all().order_by('-posted_on')
+    return projects
+
   def save_project(self):
     self.save()
 

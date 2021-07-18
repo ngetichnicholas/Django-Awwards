@@ -1,3 +1,4 @@
+from awwards_app.models import Project
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import Http404,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
@@ -13,9 +14,13 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 @login_required
 def index(request):
+  post_form = PostProjectForm()
   all_users = User.objects.all()
+  projects = Project.display_projects()
+
+
   
-  return render (request,'index.html',{"all_users":all_users})
+  return render (request,'index.html',{"projects":projects,"post":post_form,"all_users":all_users})
 
 def register(request):
   if request.method == 'POST':
