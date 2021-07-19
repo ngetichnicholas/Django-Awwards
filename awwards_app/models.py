@@ -33,7 +33,7 @@ class Project(models.Model):
     self.delete()
 
   @classmethod
-  def search_project(cls, title):
+  def search_projects(cls, title):
     return cls.objects.filter(title__icontains=title).all()
 
   @classmethod

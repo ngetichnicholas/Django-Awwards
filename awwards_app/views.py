@@ -101,9 +101,16 @@ def update_profile(request):
 
 @login_required
 def search(request):
-  if 'search_user' in request.GET and request.GET["search_user"]:
-    search_term = request.GET.get('search_user')
-  return render(request,'search.html')
+  if 'project' in request.GET and request.GET["project"]:
+    search_term = request.GET.get("project")
+    searched_projects = Project.search_projects(search_term)
+    message = f"{search_term}"
+
+    return render(request,'search.html', {"message":message,"projects":searched_projects})
+
+  else:
+    message = "You haven't searched for any term"
+    return render(request,'search.html',{"message":message})
 
 @login_required
 def post_project(request):
