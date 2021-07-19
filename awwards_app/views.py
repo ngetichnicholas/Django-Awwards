@@ -64,6 +64,7 @@ def profile(request):
   return render(request,'profile/profile.html',{'user_projects':user_projects,'projects':projects,'all_users':all_users,"current_user":current_user})
 
 def detail(request,project_id):
+  current_user = request.user
   all_ratings = Rate.objects.filter(project_id=project_id).all()
   project = Project.objects.get(pk = project_id)
   ratings = Rate.objects.filter(user=request.user,project=project_id).first()
@@ -100,7 +101,7 @@ def detail(request,project_id):
       return HttpResponseRedirect(request.path_info)
   else:
       form = RatingsForm()
-  return render(request, 'project_details.html', {'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
+  return render(request, 'project_details.html', {'current_user':current_user,'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
 
 @login_required
 def update_profile(request):

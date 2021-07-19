@@ -15,6 +15,9 @@ img {
   align-items: center;
   text-align: center;
 }
+.btn-success,.btn-danger {
+  width: 3cm !important;
+}
 .banner {
   background-image: url('https://res.cloudinary.com/dbos9xidr/image/upload/v1626728218/img_awards_banner_jcnk8r.jpg');
   height: 60vh;
@@ -27,7 +30,7 @@ img {
 }
 
 .link {
-  margin: 1rem !important;
+  margin: 1rem 0 1rem 0 !important;
 }
 .live-link {
   background-color: #4888BE;
@@ -88,6 +91,7 @@ h2,h1 {
 }
 .footer {
   color: #449D44 !important;
+  margin-top: 2rem !important;
 }
 .footer a {
   color: #449D44 !important;
