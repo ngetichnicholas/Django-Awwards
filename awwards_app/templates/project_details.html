@@ -7,11 +7,11 @@
 
   <!-- Looping through projects   -->
   <div class="row project">
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
     <!-- displaying projects projects -->
-    <div class="col-md-4">
+    <div class="col-md-8">
       <h2>Ratings</h2>
-      <table border="1">
+      <table class="table" border="1">
         <th>Username</th>
         <th>Design Rating</th>
         <th>Usability Rating</th>
@@ -19,11 +19,11 @@
         <th>Average rate</th>
       {% for rating in all_ratings %}
       <tr>
-        <td>{{ rating.user.username }}</td>
-        <td>{{ rating.design_wise}}</td>
-        <td>{{ rating.usability_wise}}</td>
-        <td>{{ rating.content_wise }}</td>
-        <td>{{ rating.aggregate_average_rate }}</td>
+        <td class="user">{{ rating.user.username }}</td>
+        <td class="design">{{ rating.design_wise}}</td>
+        <td class="usability">{{ rating.usability_wise}}</td>
+        <td class="content">{{ rating.content_wise }}</td>
+        <td class="average">{{ rating.aggregate_average_rate }}</td>
 
       </tr>
 
@@ -34,14 +34,18 @@
       <h2>{{ project.description}}</h2>
       <!--Display projects project images  -->
       <img src="{{project.project_image.url}}" class="img-thumbnail" alt="Image" onclick="window.open(this.src)">
-      <p style="font-style: oblique;">{{project.project_caption}}</p>
-      <p>Github: <strong>{{project.repo_link}} </strong>
-      </p>
-      <P>Live link: <strong>{{project.live_link}}</strong></P>
-      <P>Posted on: <strong>{{project.posted_at}}</strong> by <span
-          class="text-success">{{project.user.username}}</span></P>
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{{project.repo_link}}"><button class="btn btn-success link">View on Github</button></a>
+        </div>
+        <div class="col-md-3">
+          <a href="{{project.live_link}}"><button class="btn btn-success link">View Live</button></a>
+        </div>
+        <div class="col-md-6">
+          <P>Posted on: <strong>{{project.posted_on}}</strong> by <span class="text-success">{{project.user.username}}</span>
+        </div>
+      </div>
       {% if rating_status %}
-      <h5>You have already voted</h5>
       {% else %}
       {% if user.is_authenticated %}
       <form action="" method="post" enctype="multipart/form-data">
@@ -56,7 +60,7 @@
       {% endif %}
 
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
   </div>
 </div>
 {% endblock %}

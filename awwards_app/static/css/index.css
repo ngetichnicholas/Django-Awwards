@@ -4,13 +4,6 @@ body {
 img {
   width: 100%;
 }
-/* .open-project a{
-  width: 350px !important;
-  width: 350px !important;
-  align-items: center;
-  text-align: center;
-} */
-
 .project {
   margin-bottom: 2rem;
   height: 50vh;
@@ -21,6 +14,24 @@ img {
   border-radius: 50%;
   align-items: center;
   text-align: center;
+}
+.link {
+  margin: 1rem !important;
+}
+th {
+  background-color: #058F03 !important;
+}
+.average {
+  background-color: #4888BE !important;
+}
+.user {
+  background-color: #4888BE !important;
+}
+.content {
+  background-color: #4888BE !important;
+}
+.design,.usability {
+  background-color: #4888BE !important;
 }
 .username {
   color: #058F03;
