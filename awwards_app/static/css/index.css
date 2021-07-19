@@ -8,7 +8,7 @@ img {
   margin-bottom: 2rem;
   height: 50vh;
 }
-.profile_photo {
+.profile_picture {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -42,9 +42,8 @@ nav {
   font-size: 25;
   padding-top: 1vh;
 }
-a {
-  color: wheat;
-  font-weight: 900;
+li a {
+  color: #49C5B6 !important;
 }
 h2,h1 {
   color: #449D44;

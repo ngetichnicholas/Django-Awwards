@@ -31,7 +31,7 @@
               </div>
               <div class="col-md-4">
                 {% if project.user.profile.profile_picture.url %}
-                <p><a href="{% url 'users_profile' project.user.id %}"><img class="profile_photo"
+                <p><a href="{% url 'users_profile' project.user.id %}"><img class="profile_picture"
                   src="{{ project.user.profile.profile_picture.url }}" alt="{{ project.profile.name }}"></a></p>
                   {% else %}
                   <i style="font-size:30px;color:#4888BE" class="fa fa-user" aria-hidden="true"></i>
