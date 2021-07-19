@@ -9,16 +9,34 @@
       <div class="row">
         {% if projects %}
         {% for project in projects %}
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-3 col-sm-4 project" >
           <div class="open-project">
             <a href="{% url 'project.detail' project.id %}"><img src="{{project.project_image.url}}" alt=""
                 class="img-thumbnail"></a>
           </div>
+          <div class="details">
+            <div class="row">
+              <div class="col-md-6">
+                <p>{{project.title}}</p>
+              </div>
+              <div class="col-md-6">
+                <p>{{project.posted_on|date}}</p>
+              </div>
+            </div>
+          </div>
           <div class="profile">
             <div class="row">
-              <div class="col-md-2">
-                <p><a class="username" style="margin-top: 5px;" href="{% url 'users_profile' project.user.id %}">{{project.user.username}}</a></p>
+              <div class="col-md-8">
+                <p class="name">By <a class="username" style="margin-top: 5px;" href="{% url 'users_profile' project.user.id %}">{{project.user.username}}</a></p>
               </div>
+              <div class="col-md-4">
+                {% if project.user.profile.profile_picture.url %}
+                <p><a href="{% url 'users_profile' project.user.id %}"><img class="profile_photo"
+                  src="{{ project.user.profile.profile_picture.url }}" alt="{{ project.profile.name }}"></a></p>
+                  {% else %}
+                  <i style="font-size:30px;color:#4888BE" class="fa fa-user" aria-hidden="true"></i>
+                  {% endif %}
+                </div>
             </div>
           </div>
         </div>
