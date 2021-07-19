@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 
@@ -62,12 +63,25 @@ class Profile(models.Model):
     return "%s profile" % self.user
 
 class Rate(models.Model):
-  content_wise = models.IntegerField(blank=True,default=0)
+  content_wise = models.IntegerField(blank=True,default=0,validators=[MaxValueValidator(10),MinValueValidator(1)])
   content_wise_average = models.FloatField(default=0.0,blank=True)
-  usability_wise = models.IntegerField(blank=True,default=0)
+  usability_wise = models.IntegerField(blank=True,default=0,validators=[MaxValueValidator(10),MinValueValidator(1)])
   usability_wise_average = models.FloatField(default=0.0,blank=True)
-  design_wise = models.IntegerField(blank=True,default=0)
+  design_wise = models.IntegerField(blank=True,default=0,validators=[MaxValueValidator(10),MinValueValidator(1)])
   design_wise_average = models.FloatField(default=0.0,blank=True)
   aggregate_average_rate = models.FloatField(default=0.0,blank=True)
   project = models.ForeignKey(Project,on_delete=CASCADE)
   user = models.ForeignKey(User,on_delete=CASCADE)
+
+
+  def save_rating(self):
+      self.save()
+
+  @classmethod
+  def get_ratings(cls, id):
+      ratings = Rate.objects.filter(project_id=id).all()
+      return ratings
+
+  def __str__(self):
+      return f'{self.project} Rating'
+

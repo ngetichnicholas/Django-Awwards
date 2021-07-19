@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
-{% block content %} 
+{% load bootstrap3 %}
+{% block content %}
 {{ block.super}}
 
 <div class="container-fluid">
@@ -9,6 +10,26 @@
     <div class="col-md-4"></div>
     <!-- displaying projects projects -->
     <div class="col-md-4">
+      <h2>Ratings</h2>
+      <table border="1">
+        <th>Username</th>
+        <th>Design Rating</th>
+        <th>Usability Rating</th>
+        <th>Content Rating</th>
+        <th>Average rate</th>
+      {% for rating in all_ratings %}
+      <tr>
+        <td>{{ rating.user.username }}</td>
+        <td>{{ rating.design_wise}}</td>
+        <td>{{ rating.usability_wise}}</td>
+        <td>{{ rating.content_wise }}</td>
+        <td>{{ rating.aggregate_average_rate }}</td>
+
+      </tr>
+
+   
+      {% endfor %}
+    </table>
       <h2 class="text-success">{{ project.title }}</h2>
       <h2>{{ project.description}}</h2>
       <!--Display projects project images  -->
@@ -17,7 +38,19 @@
       <p>Github: <strong>{{project.repo_link}} </strong>
       </p>
       <P>Live link: <strong>{{project.live_link}}</strong></P>
-      <P>Posted on: <strong>{{project.posted_at}}</strong> by <span class="text-success">{{project.user.username}}</span></P>
+      <P>Posted on: <strong>{{project.posted_at}}</strong> by <span
+          class="text-success">{{project.user.username}}</span></P>
+      {% if rating_status %}
+      <h5>You have already voted</h5>
+      {% else %}
+      {% if user.is_authenticated %}
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form rating_form %}
+        <button class="btn btn-sm btn-info">Rate</button>
+      </form>
+      {% endif %}
+      {% endif %}
       {% if project.user.username == current_user.username %}
       <a href="{% url 'delete' project.id %}" class="btn btn-danger">Delete</a>
       {% endif %}

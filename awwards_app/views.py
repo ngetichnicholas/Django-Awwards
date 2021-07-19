@@ -1,9 +1,9 @@
-from awwards_app.models import Project
+from awwards_app.models import Project,Profile,Rate
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import Http404,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from . forms import Registration,UpdateUser,UpdateProfile,PostProjectForm
+from . forms import Registration,UpdateUser,UpdateProfile,PostProjectForm,RatingsForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
@@ -18,7 +18,7 @@ def index(request):
   all_users = User.objects.all()
   projects = Project.display_projects()
 
-  return render (request,'index.html',{"projects":projects,"post":post_form,"all_users":all_users})
+  return render (request,'index.html',{"projects":projects,"post_project":post_form,"all_users":all_users})
 
 def register(request):
   if request.method == 'POST':
@@ -42,12 +42,43 @@ def profile(request):
   return render(request,'profile/profile.html',{'all_users':all_users,"current_user":current_user})
 
 def detail(request,project_id):
-  current_user = request.user
-  try:
-    project = get_object_or_404(Project, pk = project_id)
-  except ObjectDoesNotExist:
-    raise Http404()
-  return render(request, 'project_details.html', {'project':project,'current_user':current_user})
+  all_ratings = Rate.objects.filter(project_id=project_id).all()
+  project = Project.objects.get(pk = project_id)
+  ratings = Rate.objects.filter(user=request.user,project=project_id).first()
+  rating_status = None
+  if ratings is None:
+    rating_status = False
+  else:
+    rating_status = True
+  if request.method == 'POST':
+    form = RatingsForm(request.POST)
+    if form.is_valid():
+      rate = form.save(commit=False)
+      rate.user = request.user
+      rate.project = project
+      rate.save()
+      post_ratings = Rate.objects.filter(project=project_id)
+
+      design_ratings = [d.design_wise for d in post_ratings]
+      design_wise_average = sum(design_ratings) / len(design_ratings)
+
+      usability_ratings = [us.usability_wise for us in post_ratings]
+      usability_wise_average = sum(usability_ratings) / len(usability_ratings)
+
+      content_ratings = [content.content_wise for content in post_ratings]
+      content_wise_average = sum(content_ratings) / len(content_ratings)
+
+      aggregate_average_rate = (design_wise_average + usability_wise_average + content_wise_average) / 3
+      print(aggregate_average_rate)
+      rate.design_wise_average = round(design_wise_average, 2)
+      rate.usability_wise_average = round(usability_wise_average, 2)
+      rate.content_wise_average = round(content_wise_average, 2)
+      rate.aggregate_average_rate = round(aggregate_average_rate, 2)
+      rate.save()
+      return HttpResponseRedirect(request.path_info)
+  else:
+      form = RatingsForm()
+  return render(request, 'project_details.html', {'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
 
 @login_required
 def update_profile(request):
@@ -75,7 +106,7 @@ def search(request):
   return render(request,'search.html')
 
 @login_required
-def post(request):
+def post_project(request):
   if request.method == 'POST':
     post_form = PostProjectForm(request.POST,request.FILES) 
     if post_form.is_valid():
@@ -86,7 +117,7 @@ def post(request):
 
   else:
     post_form = PostProjectForm()
-  return render(request,'post.html',{"post_form":post_form})
+  return render(request,'post_project.html',{"post_form":post_form})
 
 @login_required
 def users_profile(request,pk):
