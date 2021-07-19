@@ -60,6 +60,10 @@ h2,h1 {
   opacity: 0.9;
   background-color: #295168;
 }
+.project-img {
+  width: fit-content;
+  height: 350px;
+}
 .link:hover {
   color: blue;
   font-weight: 900;

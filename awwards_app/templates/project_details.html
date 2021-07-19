@@ -31,7 +31,9 @@
       {% endfor %}
     </table>
       <h2 class="text-success">{{ project.title }}</h2>
-      <h2>{{ project.description}}</h2>
+      <P>{{ project.description}}</P>
+      <h2>Technologies used</h2>
+      <p>{{project.technologies_used}}</p>
       <!--Display projects project images  -->
       <img src="{{project.project_image.url}}" class="img-thumbnail" alt="Image" onclick="window.open(this.src)">
       <div class="row">
@@ -42,7 +44,7 @@
           <a href="{{project.live_link}}"><button class="btn btn-success link">View Live</button></a>
         </div>
         <div class="col-md-6">
-          <P>Posted on: <strong>{{project.posted_on}}</strong> by <span class="text-success">{{project.user.username}}</span>
+          <P>Posted on: <strong>{{project.posted_on|date}}</strong> by <span class="text-success">{{project.user.username}}</span>
         </div>
       </div>
       {% if rating_status %}

@@ -59,10 +59,10 @@ def detail(request,project_id):
       rate.save()
       post_ratings = Rate.objects.filter(project=project_id)
 
-      design_ratings = [d.design_wise for d in post_ratings]
+      design_ratings = [design.design_wise for design in post_ratings]
       design_wise_average = sum(design_ratings) / len(design_ratings)
 
-      usability_ratings = [us.usability_wise for us in post_ratings]
+      usability_ratings = [usability.usability_wise for usability in post_ratings]
       usability_wise_average = sum(usability_ratings) / len(usability_ratings)
 
       content_ratings = [content.content_wise for content in post_ratings]
