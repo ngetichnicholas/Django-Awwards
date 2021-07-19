@@ -1,0 +1,68 @@
+body {
+  font-size: 20px;
+}
+img {
+  width: 100%;
+}
+/* .open-project a{
+  width: 350px !important;
+  width: 350px !important;
+  align-items: center;
+  text-align: center;
+} */
+
+.photo {
+  margin-bottom: 2rem;
+}
+.profile_photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  align-items: center;
+  text-align: center;
+}
+.username {
+  color: #058F03;
+}
+nav {
+  color: #4888BE !important;
+  height: 8vh !important;
+  font-size: 25;
+  padding-top: 1vh;
+}
+a {
+  color: wheat;
+  font-weight: 900;
+}
+h2,h1 {
+  color: #449D44;
+}
+.img-thumbnail {
+  cursor: pointer;
+  border-radius: 6px;
+}
+.gal-item {
+  float: left !important;
+}
+.img-thumbnail:hover {
+  opacity: 0.9;
+  background-color: #295168;
+}
+.link:hover {
+  color: blue;
+  font-weight: 900;
+}
+.footer {
+  color: #449D44 !important;
+}
+.footer a {
+  color: #449D44 !important;
+}
+
+@media (max-width: 1000px) {
+  nav {
+    height: auto !important;
+    padding-top: 1vh;
+  }
+  
+}
