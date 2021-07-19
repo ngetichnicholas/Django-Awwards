@@ -38,8 +38,10 @@ def register(request):
 def profile(request):
   current_user = request.user
   all_users = User.objects.all()
+  projects = Project.objects.all().order_by('-posted_on')
+  user_projects = Project.objects.filter(user_id = current_user.id).all().order_by('-posted_on')
   
-  return render(request,'profile/profile.html',{'all_users':all_users,"current_user":current_user})
+  return render(request,'profile/profile.html',{'user_projects':user_projects,'projects':projects,'all_users':all_users,"current_user":current_user})
 
 def detail(request,project_id):
   all_ratings = Rate.objects.filter(project_id=project_id).all()
