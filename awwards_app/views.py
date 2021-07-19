@@ -1,13 +1,15 @@
 from awwards_app.models import Project,Profile,Rate
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import Http404,HttpResponseRedirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 from . forms import Registration,UpdateUser,UpdateProfile,PostProjectForm,RatingsForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import login as auth_login
 
 
 
@@ -33,6 +35,24 @@ def register(request):
   else:
     form = Registration()
   return render(request,'registration/registration_form.html',{"form":form})
+
+def login(request):
+  if request.method == 'POST':
+    form = AuthenticationForm(request=request, data=request.POST)
+    if form.is_valid():
+      username = form.cleaned_data.get('username')
+      password = form.cleaned_data.get('password')
+      user = authenticate(username=username, password=password)
+      if user is not None:
+        auth_login(request, user)
+        messages.info(request, f"You are now logged in as {username}")
+        return redirect('home')
+      else:
+        messages.error(request, "Invalid username or password.")
+    else:
+      messages.error(request, "Invalid username or password.")
+  form = AuthenticationForm()
+  return render(request = request,template_name = "registration/login.html",context={"form":form})
 
 @login_required
 def profile(request):
