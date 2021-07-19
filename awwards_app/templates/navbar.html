@@ -6,7 +6,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand" href="{% url 'home' %}">
-          <p style="color: #49C5B6;font-size:30px;"><i class="fas fa-award"></i> AWWARDS</p>
+          <p style="color: #058F03;font-size:30px;"><i class="fas fa-award"></i> AWWARDS</p>
         </a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
           data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -35,7 +35,12 @@
             <div class="col-sm-6 col-md-6">
               {% if user.is_authenticated %}
           <li>
-            <a href="{% url 'profile'%}">Profile</a>
+            {% if user.profile.profile_picture.url %}
+            <a href="{% url 'profile'%}"><img class="profile_picture"
+              src="{{ user.profile.profile_picture.url }}" alt="{{ profile.name }}"></a>
+              {% else %}
+              <i style="font-size:30px;color:#4888BE" class="fa fa-user" aria-hidden="true"></i>
+              {% endif %}
           </li>
           <li>
             <a href="{% url 'post' %}">Post</a>

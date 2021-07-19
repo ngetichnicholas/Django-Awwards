@@ -38,10 +38,10 @@
       <img src="{{project.project_image.url}}" class="img-thumbnail" alt="Image" onclick="window.open(this.src)">
       <div class="row">
         <div class="col-md-3">
-          <a href="{{project.repo_link}}"><button class="btn btn-success link">View on Github</button></a>
+          <a href="{{project.repo_link}}"><button class="btn link live-link">View on Github</button></a>
         </div>
         <div class="col-md-3">
-          <a href="{{project.live_link}}"><button class="btn btn-success link">View Live</button></a>
+          <a href="{{project.live_link}}"><button class="btn link live-link">View Live Site</button></a>
         </div>
         <div class="col-md-6">
           <P>Posted on: <strong>{{project.posted_on|date}}</strong> by <span class="text-success">{{project.user.username}}</span>
@@ -53,7 +53,7 @@
       <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form rating_form %}
-        <button class="btn btn-sm btn-info">Rate</button>
+        <button class="btn btn-success link">Rate</button>
       </form>
       {% endif %}
       {% endif %}

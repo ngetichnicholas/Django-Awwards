@@ -18,6 +18,14 @@ img {
 .link {
   margin: 1rem !important;
 }
+.live-link {
+  background-color: #4888BE;
+  color: white;
+  border-radius: 8px;
+}
+.title {
+  color: #4888BE;
+}
 th {
   background-color: #058F03 !important;
 }
@@ -37,13 +45,13 @@ th {
   color: #058F03;
 }
 nav {
-  color: #4888BE !important;
+  color: #058F03 !important;
   height: 8vh !important;
   font-size: 25;
   padding-top: 1vh;
 }
 li a {
-  color: #49C5B6 !important;
+  color: #449D44 !important;
 }
 h2,h1 {
   color: #449D44;
