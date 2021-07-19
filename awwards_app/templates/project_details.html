@@ -57,8 +57,10 @@
       </form>
       {% endif %}
       {% endif %}
+      {% if user.is_authenticated %}
       {% if project.user.username == current_user.username %}
       <a href="{% url 'delete' project.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
       {% endif %}
 
     </div>

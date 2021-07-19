@@ -12,6 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
+@login_required
 def index(request):
   post_form = PostProjectForm()
   all_users = User.objects.all()
@@ -100,6 +101,7 @@ def update_profile(request):
   }
   return render(request,'profile/update.html',params)
 
+@login_required
 def search(request):
   if 'project' in request.GET and request.GET["project"]:
     search_term = request.GET.get("project")
@@ -126,6 +128,7 @@ def post_project(request):
     post_form = PostProjectForm()
   return render(request,'post_project.html',{"post_form":post_form})
 
+@login_required
 def users_profile(request,pk):
   user = User.objects.get(pk = pk)
   projects = Project.objects.filter(user = user)

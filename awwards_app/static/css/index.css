@@ -15,6 +15,17 @@ img {
   align-items: center;
   text-align: center;
 }
+.banner {
+  background-image: url('https://res.cloudinary.com/dbos9xidr/image/upload/v1626728218/img_awards_banner_jcnk8r.jpg');
+  height: 60vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-top: 10%;
+}
+
 .link {
   margin: 1rem !important;
 }
