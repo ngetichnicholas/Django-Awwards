@@ -21,6 +21,11 @@ A user is required to register and login to the application. Upon successful aut
 *****
 ![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626781661/screencapture-nick-awwards-herokuapp-2021-07-20-14_26_02_la9krd.png)
 *****
+### User Profile
+Every user registered in the application has profile associated with their account. Profile contains personal details and projects posted by that particular user.
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626791781/screencapture-nick-awwards-herokuapp-users-3-2021-07-20-17_31_59_mtj3hu.png)
+*****
 ### View Project details
 A user can click on any project image and a page will be displayed containing the project information like ratings, project title, description, live link, repository link and also date posted.  
 A user can only see a delete button if they are the owner of the post so they cannot delete a post belonging to another user
