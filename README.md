@@ -16,16 +16,35 @@ To access this project on your local files, you can clone it using these steps
 1. Use this command to clone $ git clone https://github.com/ngetichnicholas/Django-Awwards.git
 1. This will clone the repositoty into your local folder
 *****
+### Home page
+A user is required to register and login to the application. Upon successful authentication the user is redirected to home page where all projects posted by different users is displayed.
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626781661/screencapture-nick-awwards-herokuapp-2021-07-20-14_26_02_la9krd.png)
+*****
+### User Profile
+Every user registered in the application has profile associated with their account. Profile contains personal details and projects posted by that particular user.
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626791781/screencapture-nick-awwards-herokuapp-users-3-2021-07-20-17_31_59_mtj3hu.png)
+*****
 ### View Project details
 A user can click on any project image and a page will be displayed containing the project information like ratings, project title, description, live link, repository link and also date posted.  
 A user can only see a delete button if they are the owner of the post so they cannot delete a post belonging to another user
 *****
-![alt text]()
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626781789/screencapture-nick-awwards-herokuapp-project-16-2021-07-20-14_37_30_zezmab.png)
 *****
 ### Search Function
 A user can search projects and it will return projects matching the search term or display "Found 0 results if no match found by the search function.
 *****
-![alt text]()
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626790591/screencapture-127-0-0-1-8000-search-2021-07-20-17_14_13_vzah3v.png)
+*****
+## API
+### Get all Projects [see json list here](https://nick-awwards.herokuapp.com/api/projects/?format=json)
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-00-32_ahsrlf.png)
+*****
+### Get all Profiles [see json list here](https://nick-awwards.herokuapp.com/api/profiles/?format=json)
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-05-34_m1uomy.png)
 *****
 ## Behaviour Driven Development
 1. Provides rating form
