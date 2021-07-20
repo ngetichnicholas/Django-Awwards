@@ -30,7 +30,16 @@ A user can only see a delete button if they are the owner of the post so they ca
 ### Search Function
 A user can search projects and it will return projects matching the search term or display "Found 0 results if no match found by the search function.
 *****
-![alt text]()
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626790591/screencapture-127-0-0-1-8000-search-2021-07-20-17_14_13_vzah3v.png)
+*****
+## API
+### Get all Projects [see json list here](https://nick-awwards.herokuapp.com/api/projects/?format=json)
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-00-32_ahsrlf.png)
+*****
+### Get all Profiles [see json list here](https://nick-awwards.herokuapp.com/api/projects/?format=jsonhttps://nick-awwards.herokuapp.com/api/profiles/?format=json)
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-05-34_m1uomy.png)
 *****
 ## Behaviour Driven Development
 1. Provides rating form
