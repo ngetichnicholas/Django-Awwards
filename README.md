@@ -16,11 +16,16 @@ To access this project on your local files, you can clone it using these steps
 1. Use this command to clone $ git clone https://github.com/ngetichnicholas/Django-Awwards.git
 1. This will clone the repositoty into your local folder
 *****
+### Home page
+A user is required to register and login to the application. Upon successful authentication the user is redirected to home page where all projects posted by different users is displayed.
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626781661/screencapture-nick-awwards-herokuapp-2021-07-20-14_26_02_la9krd.png)
+*****
 ### View Project details
 A user can click on any project image and a page will be displayed containing the project information like ratings, project title, description, live link, repository link and also date posted.  
 A user can only see a delete button if they are the owner of the post so they cannot delete a post belonging to another user
 *****
-![alt text]()
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626781789/screencapture-nick-awwards-herokuapp-project-16-2021-07-20-14_37_30_zezmab.png)
 *****
 ### Search Function
 A user can search projects and it will return projects matching the search term or display "Found 0 results if no match found by the search function.
