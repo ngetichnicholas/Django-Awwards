@@ -5,11 +5,17 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 from . forms import Registration,UpdateUser,UpdateProfile,PostProjectForm,RatingsForm
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
+from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  Project,Profile,Rate
+from .serializer import ProfileSerializer,ProjectSerializer
+from rest_framework import status
+from rest_framework import viewsets
 
 
 
@@ -164,3 +170,17 @@ def delete(request,project_id):
   if project:
     project.delete_project()
   return redirect('home')
+
+#API Views
+class ProjectList(APIView):
+  def get(self,request,format=None):
+    projects=Project.objects.all()
+    serializers=ProjectSerializer(projects,many=True)
+    return Response(serializers.data)
+
+class ProfileList(APIView):
+  def get(self,request,format=None):
+    profiles=Profile.objects.all()
+    serializers=ProfileSerializer(profiles,many=True)
+    return Response(serializers.data)
+

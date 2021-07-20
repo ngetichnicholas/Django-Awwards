@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Profile, Project
-from django.contrib.auth.models import User
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -12,5 +11,5 @@ class ProfileSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'description', 'posted_on','project_image','repo_link','live_link','user' 'technologies_used']
+        fields = ['id', 'title', 'description', 'posted_on','project_image','repo_link','live_link','user' ,'technologies_used']
 
