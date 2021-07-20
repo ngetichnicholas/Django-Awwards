@@ -37,7 +37,7 @@ A user can search projects and it will return projects matching the search term 
 *****
 ![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-00-32_ahsrlf.png)
 *****
-### Get all Profiles [see json list here](https://nick-awwards.herokuapp.com/api/projects/?format=jsonhttps://nick-awwards.herokuapp.com/api/profiles/?format=json)
+### Get all Profiles [see json list here](https://nick-awwards.herokuapp.com/api/profiles/?format=json)
 *****
 ![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1626789966/Screenshot_from_2021-07-20_17-05-34_m1uomy.png)
 *****
