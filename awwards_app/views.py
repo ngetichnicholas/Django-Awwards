@@ -184,8 +184,3 @@ class ProfileList(APIView):
     serializers=ProfileSerializer(profiles,many=True)
     return Response(serializers.data)
 
-def apiView(request):
-  current_user=request.user
-  profis=Profile.objects.filter(user=current_user)[0:1]
-  return render(request,'api.html',{'profile':profis})
-
