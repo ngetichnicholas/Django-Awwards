@@ -8,7 +8,6 @@ img {
 }
 .project {
   margin-bottom: 2rem;
-  height: 50vh;
 }
 .profile_picture {
   width: 30px;
@@ -80,8 +79,8 @@ h2,h1 {
   background-color: #295168;
 }
 .project-img {
-  width: fit-content;
-  height: 350px;
+  width: 100%;
+  height: auto;
 }
 .link:hover {
   color: #021025;
